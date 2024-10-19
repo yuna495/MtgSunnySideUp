@@ -31,7 +31,7 @@ public class DeckManager : MonoBehaviour {
     }
 
     // デッキをシャッフルする
-    void ShuffleDeck() {
+    public void ShuffleDeck() {
         System.Random rnd = new System.Random();
         for (int i = deck.Count - 1; i > 0; i--) {
             int swapIndex = rnd.Next(i + 1);
@@ -72,7 +72,7 @@ public class DeckManager : MonoBehaviour {
     }
 
     // DeckViewの再配置
-    void RearrangeDeckView() {
+    public void RearrangeDeckView() {
         for (int i = 0; i < deck.Count; i++) {
             GameObject remainingCard = deckView.Find("Card_" + (i + 7)).gameObject;
             if (remainingCard != null) {
@@ -152,7 +152,7 @@ public class DeckManager : MonoBehaviour {
         UpdateDeckView();
     }
     // 手札からカードを削除し、各エリアにカードを移動
-    public void MoveCardToArea(GameObject card, Transform area) {
+    public void MoveCardToAreaFromHand(GameObject card, Transform area) {
         Sprite cardSprite = card.GetComponent<Card>().cardImage.sprite;
 
         // 手札から削除
@@ -167,6 +167,23 @@ public class DeckManager : MonoBehaviour {
 
             // 手札の表示を更新
             UpdateHand();
+        }
+    }
+    public void MoveCardToAreaFromDeck(GameObject card, Transform area) {
+        Sprite cardSprite = card.GetComponent<Card>().cardImage.sprite;
+
+        // デッキから削除
+        if (deck.Contains(cardSprite)) {
+            deck.Remove(cardSprite);
+            Destroy(card);  // デッキのUIから削除
+
+            // カードを新しいエリアに移動
+            GameObject newCard = Instantiate(cardPrefab, area);
+            newCard.GetComponent<Image>().sprite = cardSprite;
+            Debug.Log("Card moved to new area.");
+
+            // デッキの表示を更新
+            UpdateDeckView();
         }
     }
 
@@ -189,7 +206,7 @@ public class DeckManager : MonoBehaviour {
     }
 
     // DeckViewを更新
-    void UpdateDeckView() {
+    public void UpdateDeckView() {
         foreach (Transform child in deckView) {
             Destroy(child.gameObject);
         }
