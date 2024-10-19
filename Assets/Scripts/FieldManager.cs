@@ -11,6 +11,7 @@ public class FieldManager : MonoBehaviour {
     public Transform hand;
     private bool isRotate = false;     // 回転状態をトグルするフラグ
     public DeckManager deckManager;  // DeckManagerの参照を追加
+    public HandManager handManager;  // HandManagerの参照を追加
     public GraphicRaycaster raycaster; // CanvasにアタッチされているGraphicRaycaster
     public EventSystem eventSystem;   // シーンに配置されているEventSystem
 
@@ -91,13 +92,13 @@ public class FieldManager : MonoBehaviour {
                                 // Handにあるカードは手札から削除し、新しいエリアに移動
                                 switch (key) {
                                     case KeyCode.R:
-                                        deckManager.MoveCardToAreaFromHand(selectedCard, land);
+                                        handManager.MoveCardToAreaFromHand(selectedCard, land);
                                         break;
                                     case KeyCode.F:
-                                        deckManager.MoveCardToAreaFromHand(selectedCard, field);
+                                        handManager.MoveCardToAreaFromHand(selectedCard, field);
                                         break;
                                     case KeyCode.G:
-                                        deckManager.MoveCardToAreaFromHand(selectedCard, grave);
+                                        handManager.MoveCardToAreaFromHand(selectedCard, grave);
                                         break;
                                 }
                             }
@@ -118,7 +119,7 @@ public class FieldManager : MonoBehaviour {
                                         break;
                                     case KeyCode.H:
                                         //選択したカードを手札リストに追加し、手札を更新。選択したカードを削除
-                                        deckManager.UpdateHandList(selectedCard);
+                                        handManager.UpdateHandList(selectedCard);
                                         Destroy(selectedCard);
                                         break;
                                 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class KeyControl : MonoBehaviour {
     public DeckManager deckManager;     // DeckManagerスクリプトへの参照
+    public HandManager handManager;     // HandManagerスクリプトへの参照
     public FieldManager fieldManager;   // FieldManagerスクリプトへの参照
     public GraphicRaycaster raycaster;  // CanvasにアタッチされているGraphicRaycaster
     public EventSystem eventSystem;     // シーンに配置されているEventSystem
