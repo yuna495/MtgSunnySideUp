@@ -1,0 +1,56 @@
+[*.cs]
+# 基本的なインデント設定
+indent_style = space
+indent_size = 4
+
+# K&Rスタイルの波括弧の配置設定
+csharp_new_line_before_open_brace = none # 波括弧は同じ行に置く
+
+# 条件文などでelseの前には改行を入れる
+csharp_new_line_before_else = true
+
+# スイッチのラベルにインデントを追加
+csharp_indent_switch_labels = true
+
+# 単一行のステートメントを保持する
+csharp_preserve_single_line_statements = true
+
+# メソッドを表現形式のボディにできる場合は許可
+csharp_style_expression_bodied_methods = true
+
+# 制御フロー文中のキーワードの後にスペースを追加
+csharp_space_after_keywords_in_control_flow_statements = true
+
+# プリプロセッサディレクティブをコードスタイルに従わせる
+csharp_preprocessor_directives_follow_code_style = true
+
+# "using System" のディレクティブを他の "using" の前に配置
+dotnet_sort_system_directives_first = true
+
+# K&Rスタイルに合わせるための追加設定
+csharp_space_before_open_square_brackets = false # 配列や属性の角括弧の前にスペースを入れない
+csharp_space_after_cast = false # キャストの後にスペースを入れない
+csharp_space_between_method_declaration_parameter_list_parentheses = false # メソッドの引数リストの括弧の間にスペースを入れない
+csharp_space_between_method_call_parameter_list_parentheses = false # メソッド呼び出しの引数リストの括弧の間にスペースを入れない
+
+# その他の推奨設定
+csharp_style_var_for_built_in_types = true:suggestion # 組み込み型には "var" を使うよう推奨
+csharp_style_var_when_type_is_apparent = true:suggestion # 型が明白な場合には "var" を使うよう推奨
+csharp_style_var_elsewhere = false:suggestion # それ以外の場合には明示的な型を使う
+
+# 一般的な改行と空白のルール
+csharp_new_line_before_members_in_object_initializers = false # オブジェクト初期化子内でメンバーの前に改行しない
+csharp_new_line_before_members_in_anonymous_types = false # 匿名型内でメンバーの前に改行しない
+csharp_new_line_between_query_expression_clauses = true # クエリ式の各句の間には改行する
+csharp_space_before_open_brace = true # 波括弧の前にスペースを入れる（K&Rスタイルに沿う）
+
+# ブロック内の空行
+csharp_space_between_empty_method_declaration_parentheses = false # 空のメソッド宣言の括弧の間にスペースを入れない
+csharp_space_between_empty_method_call_parentheses = false # 空のメソッド呼び出しの括弧の間にスペースを入れない
+
+# メソッドやプロパティのアクセッサのスタイル
+csharp_style_expression_bodied_accessors = true # アクセッサは表現形式で記述できる場合は許可
+
+# ファイル末尾の改行
+insert_final_newline = true # ファイルの末尾に改行を入れる
+trim_trailing_whitespace = true # 行末の不要な空白を削除
