@@ -7,8 +7,7 @@ public class HandManager : MonoBehaviour {
     public Transform handArea;     // UI Panel for hand cards
     private List<Sprite> hand = new List<Sprite>();  // List to store hand cards (sprites)
 
-    public float radius = 700f;    // Radius for hand layout
-    public float maxAngle = 60f;   // Maximum angle for hand fan layout
+    public float radius = 1100f;    // Radius for hand layout
 
     // Add a card to the hand
     public void AddCardToHand(Sprite cardSprite) {
@@ -18,10 +17,17 @@ public class HandManager : MonoBehaviour {
 
     // Remove a card from the hand
     public void RemoveCardFromHand(Sprite cardSprite) {
+        Debug.Log("Removing card from hand: " + cardSprite.name);
+
         if (hand.Contains(cardSprite)) {
-            hand.Remove(cardSprite);  // Remove from list
-            UpdateHand();  // Update hand display
+            hand.Remove(cardSprite);
+            Debug.Log("Card removed successfully from hand.");
         }
+        else {
+            Debug.LogWarning("Card not found in hand.");
+        }
+
+        UpdateHand();  // 手札の表示を更新
     }
 
     // Move card from hand to another area (e.g., grave, field)
@@ -60,15 +66,18 @@ public class HandManager : MonoBehaviour {
     // Arrange the hand in a fan layout
     private void ArrangeHand() {
         int cardCount = hand.Count;
-        float angleStep = Mathf.Min(maxAngle / (cardCount - 1), maxAngle / 2);
-        float startAngle = -(angleStep * (cardCount - 1) / 2);
+
+        // カードが2枚のときは5度、3枚のときは10度、... 7枚のときは30度、最大で50度まで広げる
+        float totalAngle = Mathf.Min(5f * (cardCount - 1), 50f);  // 最大50度まで広げる
+        float angleStep = (cardCount > 1) ? totalAngle / (cardCount - 1) : 0;  // カード間の角度ステップ
+        float startAngle = -(totalAngle / 2);  // 扇状に中央から広げる
 
         for (int i = 0; i < cardCount; i++) {
             GameObject handCard = Instantiate(cardPrefab, handArea);
             handCard.GetComponent<Image>().sprite = hand[i];
 
-            // Calculate position and rotation for fan layout
-            float angle = startAngle + (i * angleStep);
+            // カードの位置と回転を計算
+            float angle = startAngle + (i * angleStep);  // カード間の角度
             float radian = angle * Mathf.Deg2Rad;
             float x = Mathf.Sin(radian) * radius;
             float y = Mathf.Cos(radian) * radius;
@@ -76,5 +85,10 @@ public class HandManager : MonoBehaviour {
             handCard.transform.localPosition = new Vector3(x, y - 1100, 0);
             handCard.transform.rotation = Quaternion.Euler(0, 0, -angle);
         }
+    }
+
+
+    public bool IsCardInHand(Sprite cardSprite) {
+        return hand.Contains(cardSprite);  // 手札にすでにカードがあるか確認
     }
 }

@@ -9,7 +9,6 @@ public class FieldManager : MonoBehaviour {
     public Transform field;
     public Transform land;
     public Transform hand;
-    private bool isRotate = false;     // 回転状態をトグルするフラグ
     public DeckManager deckManager;  // DeckManagerの参照を追加
     public HandManager handManager;  // HandManagerの参照を追加
     public GraphicRaycaster raycaster; // CanvasにアタッチされているGraphicRaycaster
@@ -24,6 +23,7 @@ public class FieldManager : MonoBehaviour {
         // レイキャストでヒットしたUI要素を格納するリスト
         List<RaycastResult> results = new List<RaycastResult>();
         raycaster.Raycast(pointerData, results);
+
         // 最初にヒットしたUI要素のみを処理
         if (results.Count > 0) {
             RaycastResult firstHit = results[0];  // 最初にヒットした結果のみ使用
@@ -36,15 +36,16 @@ public class FieldManager : MonoBehaviour {
 
                         // カードの親オブジェクトがDeckViewかつHandでないか確認
                         if (targetCard.transform.parent != deckView && targetCard.transform.parent != hand) {
-                            // カードが回転していない場合
-                            if (!isRotate) {
+                            // 現在のZ軸の回転角度を取得
+                            float zRotation = targetCard.transform.eulerAngles.z;
+
+                            // Z軸が0度の場合90度に回転させる
+                            if (Mathf.Approximately(zRotation, 0)) {
                                 targetCard.transform.Rotate(0, 0, 90);  // 90度回転
-                                isRotate = true;
                             }
-                            // カードが回転している場合
-                            else {
-                                targetCard.transform.Rotate(0, 0, -90); // 元に戻す（-90度回転）
-                                isRotate = false;
+                            // Z軸が90度の場合0度に戻す
+                            else if (Mathf.Approximately(zRotation, 90)) {
+                                targetCard.transform.Rotate(0, 0, -90); // 元に戻す（0度に）
                             }
                         }
                         break; // 最初にヒットしたカードのみ処理
@@ -53,6 +54,7 @@ public class FieldManager : MonoBehaviour {
             }
         }
     }
+
     public void CardParentChange(KeyCode key) {
         PointerEventData pointerData = new PointerEventData(eventSystem) {
             position = Input.mousePosition

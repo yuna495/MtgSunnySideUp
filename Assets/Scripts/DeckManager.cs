@@ -108,8 +108,16 @@ public class DeckManager : MonoBehaviour {
             UpdateDeckView();  // デッキビューを更新
         }
     }
-
-
+    public void RemoveCardFromDeck(Sprite card) {
+        if (deck.Contains(card)) {
+            deck.Remove(card);
+            UpdateDeckView();
+        }
+    }
+    public void AddCardToDeck(Sprite card) {
+        deck.Add(card);
+        UpdateDeckView();
+    }
     // Update the deck display in the UI
     public void UpdateDeckView() {
         foreach (Transform child in deckView) {
@@ -128,5 +136,8 @@ public class DeckManager : MonoBehaviour {
     private void UpdateHandAndDeck() {
         handManager.UpdateHand();  // Update hand display
         UpdateDeckView();  // Update deck display
+    }
+    public bool IsCardInDeck(Sprite cardSprite) {
+        return deck.Contains(cardSprite);
     }
 }

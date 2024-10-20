@@ -56,5 +56,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MtgSunnySideUp.sln"
+    "dotnet.defaultSolution": "MtgSunnySideUp.sln",
+    "cSpell.words": [
+        "Raycasts"
+    ]
 }
