@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: -3941990028036554333}
   - component: {fileID: 4637755463628388447}
   - component: {fileID: 2375223725429917721}
-  - component: {fileID: -1614612237663861457}
+  - component: {fileID: -2533152499491099482}
   m_Layer: 5
-  m_Name: Cards
+  m_Name: expansionCard
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 126, y: 176}
+  m_SizeDelta: {x: 315, y: 440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &-5824686769841911409
 CanvasGroup:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardImage: {fileID: 8621241645400676472}
---- !u!114 &-1614612237663861457
+--- !u!114 &-2533152499491099482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +172,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2662682215392399619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4796c25c289e0d341b943c983b8f8c01, type: 3}
+  m_Script: {fileID: 11500000, guid: 4625dcac7db74b94e8bd562ff7cb12e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
