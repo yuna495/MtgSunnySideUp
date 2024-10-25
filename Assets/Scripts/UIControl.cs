@@ -49,6 +49,7 @@ public class UIControl : MonoBehaviour {
     }
 
     void Update() {
+        if (Input.GetKey(KeyCode.Escape)) { SceneManager.LoadScene("MainMenu"); }
         // シフトキーが押されているか確認
         bool isShiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
@@ -70,6 +71,7 @@ public class UIControl : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Alpha5)) { DecreaseMana(4); }
             if (Input.GetKeyDown(KeyCode.Alpha6)) { DecreaseMana(5); }
         }
+
     }
 
     // DeckViewパネルの表示/非表示をトグル
