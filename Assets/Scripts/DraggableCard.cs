@@ -28,8 +28,6 @@ public class DraggableCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         GameObject selectedCard = this.gameObject;
         Sprite cardSprite = selectedCard.GetComponent<Card>().cardImage.sprite;
 
-        Debug.Log("Original Parent: " + originalParent.name);
-        Debug.Log("Current Parent: " + transform.parent.name);
         if (transform.parent == originalParent) {
             transform.position = originalParent.position;
             Debug.Log("Card returned to original position.");

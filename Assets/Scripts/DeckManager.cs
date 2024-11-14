@@ -17,7 +17,6 @@ public class DeckManager : MonoBehaviour {
     // Create the deck from card images
     void CreateDeck() {
         Sprite[] cardImages = Resources.LoadAll<Sprite>("Sprites/Cards");
-        Debug.Log("Card images loaded: " + cardImages.Length);
 
         foreach (Sprite cardImage in cardImages) {
             deck.Add(cardImage);

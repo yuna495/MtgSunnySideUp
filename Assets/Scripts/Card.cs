@@ -25,7 +25,6 @@ public class Card : MonoBehaviour, IPointerClickHandler {
             // ExpansionViewにカード情報を渡して拡大表示
             if (expansionViewManager != null) {
                 expansionViewManager.DisplayExpansionCard(cardImage.sprite);
-                Debug.Log("Right-click detected on card: " + gameObject.name);
             }
         }
     }
