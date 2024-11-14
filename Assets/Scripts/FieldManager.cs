@@ -109,15 +109,12 @@ public class FieldManager : MonoBehaviour {
                                 switch (key) {
                                     case KeyCode.R:
                                         selectedCard.transform.SetParent(land);
-                                        Debug.Log("Card moved to Land.");
                                         break;
                                     case KeyCode.F:
                                         selectedCard.transform.SetParent(field);
-                                        Debug.Log("Card moved to Field.");
                                         break;
                                     case KeyCode.G:
                                         selectedCard.transform.SetParent(grave);
-                                        Debug.Log("Card moved to Grave.");
                                         break;
                                     case KeyCode.H:
                                         //選択したカードを手札リストに追加し、手札を更新。選択したカードを削除
@@ -132,7 +129,5 @@ public class FieldManager : MonoBehaviour {
                 }
             }
         }
-
-
     }
 }

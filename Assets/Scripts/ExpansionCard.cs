@@ -8,10 +8,6 @@ public class ExpansionCard : MonoBehaviour, IPointerClickHandler {
     void Start() {
         // ExpansionView をシーンから探す
         expansionView = GameObject.Find("ExpansionView");
-
-        if (expansionView == null) {
-            Debug.LogError("ExpansionView が見つかりませんでした");
-        }
     }
 
     // IPointerClickHandler の OnPointerClick を実装
@@ -21,12 +17,9 @@ public class ExpansionCard : MonoBehaviour, IPointerClickHandler {
             if (expansionView != null) {
                 // ExpansionView を非表示にする
                 expansionView.SetActive(false);
-                Debug.Log("ExpansionView を非表示にしました");
             }
-
             // このオブジェクト（ExpansionCard）を削除する
             Destroy(gameObject);
-            Debug.Log("ExpansionCardPrefab を削除しました");
         }
     }
 }

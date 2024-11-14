@@ -51,8 +51,6 @@ public class KeyControl : MonoBehaviour {
                 // ここでカードに対する操作を行う
 
                 foreach (RaycastResult result in results) {
-                    Debug.Log("ヒットしたオブジェクト: " + result.gameObject.name);
-
                     if (result.gameObject.CompareTag("Card")) {
                         if (key == KeyCode.A) {
                             deckManager.ReturnCardToDeckTop(selectedCard);      // Aキーでカードをデッキの先頭に戻す

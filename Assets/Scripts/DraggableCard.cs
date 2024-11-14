@@ -23,8 +23,6 @@ public class DraggableCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnEndDrag(PointerEventData eventData) {
         canvasGroup.blocksRaycasts = true;  // レイキャストを再有効化
-        Debug.Log("EndDrag: Card parent is now " + transform.parent.name);
-        // ドラッグされたカードの処理
         GameObject selectedCard = this.gameObject;
         Sprite cardSprite = selectedCard.GetComponent<Card>().cardImage.sprite;
 
@@ -40,12 +38,7 @@ public class DraggableCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             // HandManagerをシーン内から探す
             HandManager handManager = Object.FindFirstObjectByType<HandManager>();
             if (handManager != null) {
-                Debug.Log("Remove from hand list called");
                 handManager.RemoveCardFromHand(cardSprite);  // Remove from hand list
-            }
-            else {
-                // HandManager が見つからなかった場合の処理
-                Debug.LogError("HandManager が見つかりませんでした。");
             }
 
             if (transform.parent == originalParent) {
@@ -59,10 +52,7 @@ public class DraggableCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 // DeckManager が見つかった場合の処理
                 deckManager.RemoveCardFromDeck(cardSprite);
             }
-            else {
-                // DeckManager が見つからなかった場合の処理
-                Debug.LogError("DeckManager が見つかりませんでした。");
-            }
+
             if (transform.parent == originalParent) {
                 deckManager.AddCardToDeck(cardSprite);
                 Destroy(gameObject);  // ドロップ失敗時は消去

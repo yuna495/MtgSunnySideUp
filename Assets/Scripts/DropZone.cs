@@ -22,11 +22,7 @@ public class DropZone : MonoBehaviour, IDropHandler {
                     if (droppedCard.transform.parent.name == "DeckView") {
                         DeckManager deckManager = Object.FindFirstObjectByType<DeckManager>();
                         if (deckManager != null) {
-                            Debug.Log("Remove from DeckView list called");
                             deckManager.RemoveCardFromDeck(droppedCardSprite);  // デッキから削除
-                        }
-                        else {
-                            Debug.LogError("DeckManager が見つかりませんでした。");
                         }
                     }
                 }
@@ -38,16 +34,12 @@ public class DropZone : MonoBehaviour, IDropHandler {
                     Debug.Log("Attempting to add card to deck: " + droppedCardSprite.name);
                     if (!deckManager.IsCardInDeck(droppedCardSprite)) {
                         deckManager.AddCardToDeck(droppedCardSprite);
-                        Debug.Log("Card added to deck, now destroying dropped card.");
+
                         // 元の親がHandだった場合、手札から削除
                         if (droppedCard.transform.parent.name == "Hand") {
                             HandManager handManager = Object.FindFirstObjectByType<HandManager>();
                             if (handManager != null) {
-                                Debug.Log("Remove from hand list called");
                                 handManager.RemoveCardFromHand(droppedCardSprite);  // 手札から削除
-                            }
-                            else {
-                                Debug.LogError("HandManager が見つかりませんでした。");
                             }
                         }
 

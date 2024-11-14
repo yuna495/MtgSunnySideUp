@@ -21,7 +21,6 @@ public class HandManager : MonoBehaviour {
 
         if (hand.Contains(cardSprite)) {
             hand.Remove(cardSprite);
-            Debug.Log("Card removed successfully from hand.");
         }
         else {
             Debug.LogWarning("Card not found in hand.");
@@ -39,7 +38,6 @@ public class HandManager : MonoBehaviour {
         // Instantiate card in the new area
         GameObject newCard = Instantiate(cardPrefab, area);
         newCard.GetComponent<Image>().sprite = cardSprite;
-        Debug.Log("Card moved to " + area.name);
     }
 
     // ** New Method: Update the hand list and check if the card is already in hand **
